@@ -24,6 +24,13 @@ fs.mkdir('C:/Users/HP/Documents/assets', (err) => {
     }
     console.log('folder created');
 });
+}else { 
+    fs.rmdir('C:/Users/HP/Documents/assets', (err) => { 
+        if(err) { 
+            console.log(err);
+        }
+        console.log('folder deleted');
+    });
 }
 
 
