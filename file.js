@@ -35,3 +35,12 @@ fs.mkdir('C:/Users/HP/Documents/assets', (err) => {
 
 
 //? deleting files
+if(fs.existsSync('C:/Users/HP/Documents/delete.txt')) { 
+    fs.unlink('C:/Users/HP/Documents/delete.txt',(err) => { 
+        if(err) { 
+            console.log(err);
+        }
+        console.log('file deleted');
+    });
+}
+

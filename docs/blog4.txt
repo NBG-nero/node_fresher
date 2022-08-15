@@ -1,0 +1,454 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package JavaSwing;
+
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.text.DecimalFormat;
+import javafx.scene.input.KeyCode;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+/**
+ *
+ * @author TOMISIN
+ */
+public class Calculator {
+
+    JFrame frame = new JFrame("Set Bounds");
+    JPanel mainPanel = new JPanel();
+    JTextField entry = new JTextField();
+    JTextField result = new JTextField();
+    JLabel label = new JLabel("Calculator");
+    JButton btn1 = new JButton("1");
+    JButton btn2 = new JButton("2");
+    JButton btn3 = new JButton("3");
+    JButton btn4 = new JButton("4");
+    JButton btn5 = new JButton("5");
+    JButton btn6 = new JButton("6");
+    JButton btn7 = new JButton("7");
+    JButton btn8 = new JButton("8");
+    JButton btn9 = new JButton("9");
+    JButton btn0 = new JButton("0");
+    JButton eqbtn = new JButton("=");
+    JButton dotbtn = new JButton(".");
+    JButton minusbtn = new JButton("-");
+    JButton plusbtn = new JButton("+");
+    JButton multiplybtn = new JButton("x");
+    JButton dividebtn = new JButton("/");
+    JButton clearbtn = new JButton("C");
+    JButton deletebtn = new JButton("<");
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Calculator calc = new Calculator();
+        calc.initialize();
+
+    }
+
+    public void initialize() {
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setFont(new Font(Font.MONOSPACED, Font.BOLD, 25));
+        entry.setHorizontalAlignment(JTextField.RIGHT);
+        result.setHorizontalAlignment(JTextField.RIGHT);
+        //result.setEditable(false);
+
+        mainPanel.setLayout(null);
+        mainPanel.add(entry);
+        mainPanel.add(result);
+        mainPanel.add(label);
+        mainPanel.add(btn0);
+        mainPanel.add(btn1);
+        mainPanel.add(btn2);
+        mainPanel.add(btn3);
+        mainPanel.add(btn4);
+        mainPanel.add(btn5);
+        mainPanel.add(btn6);
+        mainPanel.add(btn7);
+        mainPanel.add(btn8);
+        mainPanel.add(btn9);
+        mainPanel.add(eqbtn);
+        mainPanel.add(dotbtn);
+        mainPanel.add(minusbtn);
+        mainPanel.add(plusbtn);
+        mainPanel.add(multiplybtn);
+        mainPanel.add(dividebtn);
+        mainPanel.add(clearbtn);
+        mainPanel.add(deletebtn);
+
+        entry.setBounds(10, 10, 170, 50);
+        result.setBounds(190, 10, 50, 50);
+        label.setBounds(0, 70, 255, 50);
+        clearbtn.setBounds(10, 130, 50, 50);
+        deletebtn.setBounds(70, 130, 50, 50);
+        dividebtn.setBounds(130, 130, 50, 50);
+        multiplybtn.setBounds(190, 130, 50, 50);
+        btn7.setBounds(10, 190, 50, 50);
+        btn8.setBounds(70, 190, 50, 50);
+        btn9.setBounds(130, 190, 50, 50);
+        minusbtn.setBounds(190, 190, 50, 50);
+        btn4.setBounds(10, 250, 50, 50);
+        btn5.setBounds(70, 250, 50, 50);
+        btn6.setBounds(130, 250, 50, 50);
+        plusbtn.setBounds(190, 250, 50, 50);
+        btn1.setBounds(10, 310, 50, 50);
+        btn2.setBounds(70, 310, 50, 50);
+        btn3.setBounds(130, 310, 50, 50);
+        eqbtn.setBounds(190, 310, 50, 110);
+        btn0.setBounds(10, 370, 110, 50);
+        dotbtn.setBounds(130, 370, 50, 50);
+
+        clearbtn.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        deletebtn.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        dividebtn.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        multiplybtn.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        btn7.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        btn8.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        btn9.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        minusbtn.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        btn4.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        btn5.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        btn6.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        plusbtn.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        btn1.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        btn2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        btn3.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        eqbtn.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        btn0.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        dotbtn.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        entry.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        result.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        
+        btn0.addActionListener(new calcActions());
+        btn1.addActionListener(new calcActions());
+        btn2.addActionListener(new calcActions());
+        btn3.addActionListener(new calcActions());
+        btn4.addActionListener(new calcActions());
+        btn5.addActionListener(new calcActions());
+        btn6.addActionListener(new calcActions());
+        btn7.addActionListener(new calcActions());
+        btn8.addActionListener(new calcActions());
+        btn9.addActionListener(new calcActions());
+        dotbtn.addActionListener(new calcActions());
+        plusbtn.addActionListener(new calcActions());
+        minusbtn.addActionListener(new calcActions());
+        dividebtn.addActionListener(new calcActions());
+        multiplybtn.addActionListener(new calcActions());
+        deletebtn.addActionListener(new calcActions());
+        clearbtn.addActionListener(new calcActions());
+        eqbtn.addActionListener(new calcActions());
+
+        entry.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) {
+               ke.consume();
+            }
+
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                ke.consume();
+            }
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                char text = ke.getKeyChar();
+               
+                if(text == '.'){
+                    String tempText = entry.getText();
+                    entry.setText(tempText + dotbtn.getText());
+                } else if(text == '1'){
+                    String tempText = entry.getText();
+                    entry.setText(tempText + btn1.getText());
+                } else if(text == '2'){
+                    String tempText = entry.getText();
+                    entry.setText(tempText + btn2.getText());
+                } else if(text == '3'){
+                    String tempText = entry.getText();
+                    entry.setText(tempText + btn3.getText());
+                } else if(text == '4'){
+                    String tempText = entry.getText();
+                    entry.setText(tempText + btn4.getText());
+                } else if(text == '5'){
+                    String tempText = entry.getText();
+                    entry.setText(tempText + btn5.getText());
+                } else if(text == '6'){
+                    String tempText = entry.getText();
+                    entry.setText(tempText + btn6.getText());
+                } else if(text == '7'){
+                    String tempText = entry.getText();
+                    entry.setText(tempText + btn7.getText());
+                } else if(text == '8'){
+                    String tempText = entry.getText();
+                    entry.setText(tempText + btn8.getText());
+                } else if(text == '9'){
+                    String tempText = entry.getText();
+                    entry.setText(tempText + btn9.getText());
+                } else if(text == '0'){
+                    String tempText = entry.getText();
+                    entry.setText(tempText + btn0.getText());
+                } else if(text == '*'){
+                    String tempText = entry.getText();
+                    entry.setText(tempText + multiplybtn.getText());
+                } else if(text == '/'){
+                    String tempText = entry.getText();
+                    entry.setText(tempText + dividebtn.getText());
+                } else if(text == '-'){
+                    String tempText = entry.getText();
+                    entry.setText(tempText + minusbtn.getText());
+                } else if(text == '+'){
+                    String tempText = entry.getText();
+                    entry.setText(tempText + plusbtn.getText());
+                } else if(text == KeyEvent.VK_BACK_SPACE){
+                    if (entry.getText().length() > 0) {
+                        String tempText = entry.getText();
+                        entry.setText(tempText.substring(0, tempText.length() - 1)); 
+                    }
+                } else if((text == 'c') || (text == 'C')){
+                    entry.setText("");
+                } else if(text == KeyEvent.VK_ENTER){
+                    calcActions ca = new calcActions();
+                    String expression = "+" + entry.getText() + "+";
+                    try {
+                    ca.calculateWithBODMAS(expression);
+                    } catch (Exception e) {
+                        result.setText("Error");
+                    }
+                } else {
+                    ke.consume();
+                }
+            }
+        });
+
+        frame.add(mainPanel);
+        frame.setSize(255, 460);
+        frame.setResizable(false);
+
+        frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    }
+
+    public class calcActions implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+
+            if (ae.getSource() == btn0) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText + btn0.getText());
+
+            } else if (ae.getSource() == btn1) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText + btn1.getText());
+
+            } else if (ae.getSource() == btn2) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText + btn2.getText());
+
+            } else if (ae.getSource() == btn3) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText + btn3.getText());
+
+            } else if (ae.getSource() == btn4) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText + btn4.getText());
+
+            } else if (ae.getSource() == btn5) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText + btn5.getText());
+
+            } else if (ae.getSource() == btn6) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText + btn6.getText());
+
+            } else if (ae.getSource() == btn7) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText + btn7.getText());
+
+            } else if (ae.getSource() == btn8) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText + btn8.getText());
+
+            } else if (ae.getSource() == btn9) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText + btn9.getText());
+
+            } else if (ae.getSource() == btn0) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText + btn0.getText());
+
+            } else if (ae.getSource() == dotbtn) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText + dotbtn.getText());
+
+            } else if (ae.getSource() == deletebtn) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText.substring(0, tempText.length() - 1));
+
+            } else if (ae.getSource() == clearbtn) {
+
+                entry.setText("");
+
+            } else if (ae.getSource() == plusbtn) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText + plusbtn.getText());
+
+            } else if (ae.getSource() == minusbtn) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText + minusbtn.getText());
+
+            } else if (ae.getSource() == dividebtn) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText + dividebtn.getText());
+
+            } else if (ae.getSource() == multiplybtn) {
+
+                String tempText = entry.getText();
+                entry.setText(tempText + multiplybtn.getText());
+
+            } else if (ae.getSource() == eqbtn) {
+
+                String text = "+" + entry.getText() + "+";
+                try {
+                    calculateWithBODMAS(text);
+                } catch (Exception e) {
+                    result.setText("Error");
+                }
+            }
+
+        }
+        
+        public void calculateWithBODMAS(String expression){
+                
+            if (expression.contains("/") || expression.contains("x")) {
+            for (int i = 0; i < expression.length(); i++) {
+                
+                if ((expression.charAt(i) + "").equals("/") || (expression.charAt(i) + "").equals("x")) {
+                    //get number at the left of x and solve till you get to the next plus or minus and the replace that expression with answer
+                    int startPoint = 0, endPoint = 0;
+                    for (int j = i; j > -1; j--) {
+                        if ((expression.charAt(j) + "").equals("+") || (expression.charAt(j) + "").equals("-")) {
+                            startPoint = j + 1;                            
+                            break;
+                        }
+                    }
+                    for (int k = i; k < expression.length(); k++) {
+                        if ((expression.charAt(k) + "").equals("+") || (expression.charAt(k) + "").equals("-")) {
+                            endPoint = k;
+                            break;
+                            
+                        }
+                    }
+                    
+                    String divideOrMultiplyExpression = expression.substring(startPoint, endPoint);
+                    String answer = solveAnExpression("+" + divideOrMultiplyExpression + "+");
+                    //System.out.println(divideOrMultiplyExpression + "=" + answer);
+                    
+                    String newExpression = expression.replace(divideOrMultiplyExpression, answer);
+                    //System.out.println(newExpression);
+                    //System.out.println(newExpression);
+                    
+                    //restart the calculation in case there are more multiplications or divisions
+                    calculateWithBODMAS(newExpression);
+                    break;
+                }                 
+                
+            }
+        } else {
+                 result.setText(solveAnExpression(expression));
+        }
+        
+                
+        }
+    
+    public boolean isNumber(String value) {
+        if (value.equals("0") || value.equals("1") || value.equals("2") || value.equals("3") || value.equals("4")
+                || value.equals("5") || value.equals("6") || value.equals("7") || value.equals("8") || value.equals("9") || value.equals(".")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String solveAnExpression(String expression){
+            double storedExpression = 0.0;
+            DecimalFormat format = new DecimalFormat("0.##");
+
+               
+            for (int i = 0; i < expression.length(); i++) {
+
+                    switch (expression.charAt(i) + "") {
+                        case "+":
+                            for (int j = i + 1; j < expression.length(); j++) {
+                                if (!isNumber(expression.charAt(j) + "")) {
+                                    storedExpression += Double.valueOf(expression.substring(i + 1, j));
+                                    break;
+                                }
+                            }
+                            break;
+                        case "-":
+                            for (int j = i + 1; j < expression.length(); j++) {
+                                if (!isNumber(expression.charAt(j) + "")) {
+                                    storedExpression -= Double.valueOf(expression.substring(i + 1, j));
+                                    break;
+                                }
+                            }
+                            break;
+                        case "/":
+                            for (int j = i + 1; j < expression.length(); j++) {
+                                if (!isNumber(expression.charAt(j) + "")) {
+                                    storedExpression /= Double.valueOf(expression.substring(i + 1, j));
+                                    break;
+                                }
+                            }
+                            break;
+                        case "x":
+                            for (int j = i + 1; j < expression.length(); j++) {
+                                if (!isNumber(expression.charAt(j) + "")) {
+                                    storedExpression *= Double.valueOf(expression.substring(i + 1, j));
+                                    break;
+                                }
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+                return String.valueOf(format.format(storedExpression));
+        }
+    }
+
+    
+
+    
+}
