@@ -13,7 +13,7 @@ const dbURI =
 
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((result) => console.log("connected to db"))
+  .then((result) => app.listen(3000))
   .catch((err) => console.log(err));
 // register view engine
 app.set("view engine", "ejs");
@@ -21,10 +21,6 @@ app.set("view engine", "ejs");
 //but in a specific folder,
 //hence the need to specify
 app.set("views", "./Node-cr/views");
-
-//listen for requests
-
-app.listen(3000);
 
 // middleware and static files
 app.use(express.static("Node-cr/public"));
