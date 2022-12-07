@@ -15,4 +15,9 @@ body: {
     type: String, 
     required: true
 }
+}, { 
+    timeStamps: true
 });
+
+const Blog = mongoose.mode('Blog', blogSchema);
+module.exports = Blog;
