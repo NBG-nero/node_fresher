@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Schema =mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const blogSchema = new Schema({ 
 title: { 
@@ -16,8 +16,9 @@ body: {
     required: true
 }
 }, { 
-    timeStamps: true
-});
+    timestamps: true
+}
+);
 
-const Blog = mongoose.mode('Blog', blogSchema);
+const Blog = mongoose.model('Blog', blogSchema);
 module.exports = Blog;

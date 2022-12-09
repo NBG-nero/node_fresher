@@ -1,10 +1,11 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const Blog = require('./Node-cr/models/blog');
+const Blog = require("./models/blog");
 
 ///express app
 const app = express();
+
 //mongoose fucker
 mongoose.set("strictQuery", true);
 
@@ -15,11 +16,11 @@ const dbURI =
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => app.listen(3000))
-  .catch((err) => console.log(err));
+.catch((err) => console.log(err));
 
 // register view engine
 app.set("view engine", "ejs");
-// because my views folder is not int the immediate directory
+// because my views folder is not in the immediate directory
 //but in a specific folder,
 //hence the need to specify
 app.set("views", "./Node-cr/views");
@@ -29,18 +30,37 @@ app.use(express.static("Node-cr/public"));
 app.use(morgan("dev"));
 
 // mongoose and mongo sandbox routes 
-app.get('/add=blog', (req, res)=> { 
+app.get('/add-blog', (req, res)=> { 
 const blog = new Blog({
   title: "new blog", 
   snippet:"about my new blog", 
-  body:" more aboutmy new blog"
-})
+  body:" more about my new blog"
+});
+
 blog.save().then((result) => { 
-  res.send(result)
+  res.send(result);
 }).catch((err) => { 
   console.log(err);
-})
-})
+});
+});
+
+app.get("/all-blogs",(req, res) => { 
+  Blog.find() 
+ .then((result)=> { 
+  res.send(result);
+ }) .catch((err)=>{ 
+  console.log(err);
+ } );
+});
+
+app.get("/single-blog",(req, res)=> { 
+Blog.findById("6393ac2b307c73ee83b13bf9")
+.then((result)=> { 
+  res.send(result);
+ }) .catch((err)=>{ 
+  console.log(err);
+ } );
+});
 
 //routes
 app.get("/", (req, res) => {
