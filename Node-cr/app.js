@@ -27,7 +27,7 @@ app.set("views", "./Node-cr/views");
 
 // middleware and static files
 app.use(express.static("Node-cr/public"));
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 //routes
@@ -41,7 +41,8 @@ app.get("/about", (req, res) => {
 
 //blog routes
 app.get("/blogs", (req, res) => {
-  Blog.find().sort({createdAt: -1})
+  Blog.find()
+    .sort({ createdAt: -1 })
     .then((result) => {
       res.render("index", {
         title: " All Blog",
@@ -53,14 +54,17 @@ app.get("/blogs", (req, res) => {
     });
 });
 
-app.post("/blogs",(req , res)=>{ 
-const  blog = new Blog(req.body);
-  blog.save().then((result)=> { 
-res.redirect("/blogs");
-  }).catch((err) => {console.log(err);
-  });
+app.post("/blogs", (req, res) => {
+  const blog = new Blog(req.body);
+  blog
+    .save()
+    .then((result) => {
+      res.redirect("/blogs");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
-
 
 app.get("/blogs/create", (req, res) => {
   res.render("create", { title: "Create a new Blog" });
